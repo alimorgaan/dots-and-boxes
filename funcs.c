@@ -289,7 +289,7 @@ char updatestats(struct board * myboard)
         {
             stats = 0 ; 
         }
-        else
+        else if (myboard->players[0].score < myboard->players[1].score)
         {
             stats = 1 ; 
         }
