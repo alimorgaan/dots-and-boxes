@@ -53,26 +53,42 @@ void initboxes(struct board * myboard)
       
   }  
 }
-void initplayer(struct board * myboard , char index)
+void initplayer(struct board * myboard , char index )
 {
     printf("please enter player %d name \n", index+1); 
     scanf("%s" , myboard->players[index].name);
     myboard->players[index].score = 0 ; 
 }
-void initboard(struct board * myboard)
+void initboard(struct board * myboard , char mode) 
 {
-    for (int i = 0; i < 17; i++)
-    {
-        initline(myboard , i);     
-    }
-    myboard->gamestats = 'c';
-    myboard->playerturn = 0 ; 
-    for (int i = 0; i < 2; i++)
-    {
-        initplayer(myboard , i) ; 
-    }
     
-    initboxes(myboard);
+    if(mode == 50){
+        for (int i = 0; i < 17; i++)
+        {
+            initline(myboard , i);     
+        }
+        myboard->gamestats = 'c';
+        myboard->playerturn = 0 ; 
+        for (int i = 0; i < 2; i++)
+        {
+            initplayer(myboard , i ) ; 
+        }
+        initboxes(myboard);
+    }
+     else
+    {
+        for (int i = 0; i < 17; i++)
+        {
+            initline(myboard , i);     
+        }
+        myboard->gamestats = 'c';
+        myboard->playerturn = 0 ; 
+        initplayer(myboard , 0 );
+        strcpy(myboard->players[1].name, "computer");
+        myboard->players[1].score = 0;
+        initboxes(myboard);
+    }
+        
 }
 void drawboard(struct board * myboard)
 {
@@ -196,6 +212,13 @@ void drawboard(struct board * myboard)
 
 }
 
+char checkRandInput(int myRand , struct board * myboard){
+    if(myboard->gamelines[myRand].drawstats == 0){
+        return 1; 
+    }else{
+        return 0; 
+    }
+}
 
 char checkinput(char input , struct board * myboard)
 {
@@ -211,6 +234,29 @@ char checkinput(char input , struct board * myboard)
     }
     return 0 ; 
 }
+
+
+void handleRand(int input , struct board * myboard)
+{
+    if (input <= 8)
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            myboard->gamelines[input].content[i] = '-' ;
+            myboard->gamelines[input].drawstats = 1 ;  
+        }
+    }
+    if (input > 8)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            myboard->gamelines[input].content[i] = '|' ;
+            myboard->gamelines[input].drawstats = 1 ;  
+        }
+    }
+    
+}
+
 
 void handle(char input , struct board * myboard)
 {
