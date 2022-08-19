@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "funcs.c"
+#include <string.h>
+
+#include "funcs.h"
+#include "storage.h"
 
 int main()
 {
+
     struct board *myboard = malloc(sizeof(struct board));
     printf("welcome to dots and boxes\n");
 
@@ -11,16 +15,29 @@ int main()
     printf("please select playing mode : \n");
     printf("1-single player \n");
     printf("2-multiplayer  \n");
+    printf("3-load a game\n");
     scanf("%c", &mode);
-
-    initboard(myboard, mode);
+    // initboard(myboard, mode);
     system("cls");
 
-    if (mode == 50) // 50 is the ascii code of 2
+    if (mode == 50 || mode == 49)
+    {
+        initboard(myboard, mode);
+        system("cls"); 
+    }
+    else
+    {
+        load(myboard);
+        system("cls"); 
+    }
+
+    if (myboard->mode == 50) // 50 is the ascii code of 2
     {
         char input;
         while (myboard->gamestats == 'c')
         {
+            printf("-----------------------------------------------\n\n");
+            printf("to save the game enter @\n\n");
             printscores(myboard);
             printf("-----------------------------------------------\n\n");
             drawboard(myboard);
@@ -30,6 +47,11 @@ int main()
             printf("enter a letter to draw a line instaed ");
             scanf(" %c", &input);
             system("cls");
+            if (input == '@')
+            {
+                save(myboard);
+                return 0;
+            }
             if (checkinput(input, myboard))
             {
                 handle(input, myboard);
@@ -71,6 +93,8 @@ int main()
         {
             if (myboard->playerturn == 0)
             {
+                printf("-----------------------------------------------\n\n");
+                printf("to save the game enter @\n\n");
                 printscores(myboard);
                 printf("-----------------------------------------------\n\n");
                 drawboard(myboard);
@@ -79,6 +103,11 @@ int main()
                 printf("enter a letter to draw a line instaed ");
                 scanf(" %c", &input);
                 system("cls");
+                if (input == '@')
+                {
+                    save(myboard);
+                    return 0;
+                }
                 if (checkinput(input, myboard))
                 {
                     handle(input, myboard);
@@ -109,7 +138,6 @@ int main()
                     myboard->playerturn = !myboard->playerturn;
                 }
                 myboard->gamestats = updatestats(myboard);
-                
             }
         }
 
