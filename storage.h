@@ -17,6 +17,8 @@ void save(struct board *myboard)
             system("pause");
         }
     }
+
+    fclose(filePtr);
 }
 
 void load(struct board *myboard)
@@ -29,10 +31,12 @@ void load(struct board *myboard)
         printf("ERORR \n -------------------------\n no saved game to load !\n");
         system("pause");
         system("cls");
-        exit(0); 
+        exit(0);
     }
     else
     {
-        fread(myboard, sizeof(struct board), 1, filePtr); 
+        fread(myboard, sizeof(struct board), 1, filePtr);
     }
+
+    fclose(filePtr);
 }

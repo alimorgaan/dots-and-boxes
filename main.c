@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -23,12 +24,12 @@ int main()
     if (mode == 50 || mode == 49)
     {
         initboard(myboard, mode);
-        system("cls"); 
+        system("cls");
     }
     else
     {
         load(myboard);
-        system("cls"); 
+        system("cls");
     }
 
     if (myboard->mode == 50) // 50 is the ascii code of 2
