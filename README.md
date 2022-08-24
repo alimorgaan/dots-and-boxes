@@ -1,7 +1,9 @@
 # dots-and-boxes
+##console game with 2x3 grid written in C
 
-simple game (dots and boxes) 2x3 written in C
+-Two playing modes (multiplayer - single player)
+-Save and Load 
 
-make sure you run it using a console that supports ANSI escape codes like cmder ! 
 
-![image](https://user-images.githubusercontent.com/32411364/169718916-afd47bba-7af2-4f3d-8772-2895777236b2.png)
+
+![1](https://user-images.githubusercontent.com/32411364/186296463-0bcd5b77-d88f-41f7-8ded-d6e10d62c172.JPG)
