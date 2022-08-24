@@ -46,6 +46,7 @@ int main()
             printf("-----------------------------------------------\n\n");
             printf("%s's turn\n", myboard->players[myboard->playerturn].name);
             printf("enter a letter to draw a line instaed ");
+            fflush(stdin); 
             scanf(" %c", &input);
             system("cls");
             if (input == '@')
@@ -102,6 +103,7 @@ int main()
                 printf("\n-----------------------------------------------\n\n");
                 printf("your turn \n");
                 printf("enter a letter to draw a line instaed ");
+                fflush(stdin); 
                 scanf(" %c", &input);
                 system("cls");
                 if (input == '@')
